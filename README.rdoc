@@ -1,6 +1,10 @@
-= On
+= On {<img src="https://secure.travis-ci.org/neopoly/on.png?branch=master" alt="Build Status" />}[https://travis-ci.org/neopoly/on]
 
 Dynamic callbacks.
+
+Gem[https://rubygems.org/gems/on] |
+Source[https://github.com/neopoly/on] |
+Documentation[http://rubydoc.info/github/neopoly/on/master/file/README.rdoc]
 
 Inspired by http://www.mattsears.com/articles/2011/11/27/ruby-blocks-as-dynamic-callbacks
 
