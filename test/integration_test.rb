@@ -1,7 +1,6 @@
 require 'helper'
 
 class IntegrationTest < Testem
-
   def tweet(message, &block)
     callback = On.new(:success, :failure, &block)
     case message
@@ -10,12 +9,6 @@ class IntegrationTest < Testem
     when /^Sir,.*/
       callback.call :success, message
     end
-  end
-
-  let(:called) { [] }
-
-  before do
-    called.clear
   end
 
   test "it calls success" do
@@ -67,15 +60,5 @@ class IntegrationTest < Testem
     assert_equal "Invalid callback :invalid", e.message
 
     assert_called [:method]
-  end
-
-  private
-
-  def assert_called(*args)
-    assert_equal called, args
-  end
-
-  def called!(*args)
-    called << args
   end
 end

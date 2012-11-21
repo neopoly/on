@@ -24,26 +24,10 @@ class OnProcTest < Testem
     end
   end
 
-  let(:called) { [] }
-
-  before do
-    called.clear
-  end
-
   test "call proc" do
     verify(1)
     verify(2)
 
     assert_called [ :block, 1 ], [ :odd ], [ :block, 2 ], [ :even ]
-  end
-
-  private
-
-  def assert_called(*args)
-    assert_equal called, args
-  end
-
-  def called!(*args)
-    called << args
   end
 end

@@ -1,8 +1,6 @@
 require 'helper'
 
 class OnTest < Testem
-  let(:called) { [] }
-
   context "initialize" do
     test "at least one callback" do
       e = assert_raises ArgumentError do
@@ -80,17 +78,5 @@ class OnTest < Testem
 
       assert_nothing_called
     end
-  end
-
-  def called!(*args)
-    called << args
-  end
-
-  def assert_called(*args)
-    assert_equal called, args
-  end
-
-  def assert_nothing_called
-    assert_called
   end
 end
