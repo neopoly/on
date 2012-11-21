@@ -32,17 +32,15 @@ class On
 
   # Dispatch callback.
   def call(name, *args)
-    validate_callback!(name)
-    @callback = Callback.new(name, args)
-    @block.call(self)
+    validate_callback_name!(name)
+    record_callback(name, args)
+    call_block
   end
 
   # Handle a callback.
   def on(name, &block)
-    validate_callback!(name)
-    if @callback && @callback.name == name
-      block.call(*@callback.args)
-    end
+    validate_callback_name!(name)
+    handle_callback(name, block)
   end
 
   Callback = Struct.new(:name, :args)
@@ -55,9 +53,23 @@ class On
 
   private
 
-  def validate_callback!(name)
+  def validate_callback_name!(name)
     unless @callbacks.include?(name)
       raise InvalidCallback, name
+    end
+  end
+
+  def record_callback(name, args)
+    @callback = Callback.new(name, args)
+  end
+
+  def call_block
+    @block.call(self)
+  end
+
+  def handle_callback(name, block)
+    if @callback && @callback.name == name
+      block.call(*@callback.args)
     end
   end
 end
