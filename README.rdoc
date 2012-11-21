@@ -10,10 +10,35 @@ Inspired by http://www.mattsears.com/articles/2011/11/27/ruby-blocks-as-dynamic-
 
 == Usage
 
+Basic usage.
+
   require 'on'
 
   def tweet(message, &block)
     callback = On.new(:success, :failure, &block)
+    callback.call :success
+  rescue => e
+    callback.call :failure, e.message
+  end
+
+  tweet "hello world" do |callback|
+    callback.on :success do
+      # handle success
+    end
+    callback.on :failure do |error_message|
+      # handle error message
+    end
+  end
+
+
+== Usage with proc
+
+Syntatic sugar for creating an +on+ callback from Proc.
+
+  require 'on/proc'
+
+  def tweet(message, &block)
+    callback = block.on(:success, :failure)
     callback.call :success
   rescue => e
     callback.call :failure, e.message
