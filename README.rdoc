@@ -1,6 +1,6 @@
 = On {<img src="https://secure.travis-ci.org/neopoly/on.png?branch=master" alt="Build Status" />}[https://travis-ci.org/neopoly/on]
 
-Dynamic callbacks.
+Dynamic callbacks for Ruby blocks.
 
 Gem[https://rubygems.org/gems/on] |
 Source[https://github.com/neopoly/on] |

@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = On::VERSION
   gem.authors       = ["Peter Suschlik"]
   gem.email         = ["ps@neopoly.de"]
-  gem.description   = %q{Dynamic callbacks with ruby blocks.}
-  gem.summary       = %q{}
+  gem.description   = %q{Dynamic callbacks with Ruby blocks.}
+  gem.summary       = %q{Inspired by http://www.mattsears.com/articles/2011/11/27/ruby-blocks-as-dynamic-callbacks}
   gem.homepage      = "https://github.com/neopoly/on"
 
   gem.files         = `git ls-files`.split($/)
