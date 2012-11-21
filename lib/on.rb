@@ -3,6 +3,8 @@ require 'set'
 
 class On
   def initialize(*callbacks, &block)
+    raise ArgumentError, "please provide at least one callback" if callbacks.empty?
+    raise ArgumentError, "please provide a block" unless block
     @callbacks  = Set.new(callbacks)
     @block      = block
   end
