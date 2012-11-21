@@ -12,18 +12,20 @@ class IntegrationTest < Testem
     end
   end
 
+  let(:called) { [] }
+
   before do
-    $called = []
+    called.clear
   end
 
   test "it calls success" do
     tweet "Sir, hello world" do |callback|
-      called :method
+      called! :method
       callback.on :success do |message|
-        called :success, message
+        called! :success, message
       end
       callback.on :failure do |message|
-        called :failure, message
+        called! :failure, message
       end
     end
 
@@ -32,12 +34,12 @@ class IntegrationTest < Testem
 
   test "it calls failure" do
     tweet nil do |callback|
-      called :method
+      called! :method
       callback.on :success do |message|
-        called :success, message
+        called! :success, message
       end
       callback.on :failure do |message|
-        called :failure, message
+        called! :failure, message
       end
     end
 
@@ -46,7 +48,7 @@ class IntegrationTest < Testem
 
   test "no callback called" do
     tweet "you're such a fool" do |callback|
-      called :method
+      called! :method
     end
 
     assert_called
@@ -55,10 +57,10 @@ class IntegrationTest < Testem
   test "invalid callback name" do
     e = assert_raises On::InvalidCallback do
       tweet "Sir, hi" do |callback|
-        called :method
+        called! :method
 
         callback.on :invalid do
-          called :invalid
+          called! :invalid
         end
       end
     end
@@ -70,10 +72,10 @@ class IntegrationTest < Testem
   private
 
   def assert_called(*args)
-    assert_equal $called, args
+    assert_equal called, args
   end
 
-  def called(*args)
-    $called << args
+  def called!(*args)
+    called << args
   end
 end
