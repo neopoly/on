@@ -53,7 +53,7 @@ class IntegrationTest < Testem
   end
 
   test "invalid callback name" do
-    assert_raises On::InvalidCallback, :message => "Invalid callback :invalid" do
+    e = assert_raises On::InvalidCallback do
       tweet "Sir, hi" do |callback|
         called :method
 
@@ -62,6 +62,7 @@ class IntegrationTest < Testem
         end
       end
     end
+    assert_equal "Invalid callback :invalid", e.message
 
     assert_called [:method]
   end

@@ -22,5 +22,4 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'minitest'
   gem.add_development_dependency 'testem'
-  gem.add_development_dependency 'simple_assertions'
 end
