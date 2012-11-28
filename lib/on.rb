@@ -23,6 +23,8 @@ require 'set'
 #    end
 #  end
 class On
+  attr_reader :callback
+
   def initialize(*callbacks, &block)
     raise ArgumentError, "please provide at least one callback" if callbacks.empty?
     raise ArgumentError, "please provide a block" unless block
