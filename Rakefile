@@ -11,6 +11,18 @@ Rake::TestTask.new do |t|
   t.verbose = true
 end
 
+namespace :test do
+  desc "Run tests in isolation"
+  task :isolation do
+    FileList['test/*_test.rb'].each do |test_file|
+      ruby "-Ilib:test #{test_file}"
+    end
+  end
+
+  desc "Run tests with isolation tests"
+  task :all => [ :test, :"test:isolation" ]
+end
+
 # RDoc
 require 'rdoc/task'
 RDoc::Task.new do |rdoc|

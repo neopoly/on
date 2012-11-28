@@ -1,3 +1,5 @@
+require 'on'
+
 # Syntatic sugar for creating an +on+ callback from Proc.
 #
 # = Example

@@ -1,8 +1,6 @@
 require 'minitest/autorun'
 require 'testem'
 
-require 'on'
-
 class Testem
   let(:called) { [] }
 

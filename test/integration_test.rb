@@ -1,5 +1,7 @@
 require 'helper'
 
+require 'on'
+
 class IntegrationTest < Testem
   def tweet(message, &block)
     callback = On.new(:success, :failure, &block)

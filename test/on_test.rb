@@ -1,5 +1,7 @@
 require 'helper'
 
+require 'on'
+
 class OnTest < Testem
   context "initialize" do
     test "at least one callback" do
