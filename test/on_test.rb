@@ -46,6 +46,8 @@ class OnTest < Testem
       on.call :success, :foo, :bar
 
       assert_called [ :block ], [ :success, :foo, :bar ]
+      assert on.callback
+      assert_equal :success, on.callback.name
     end
 
     test "calls invalid callback" do
@@ -79,6 +81,7 @@ class OnTest < Testem
       end
 
       assert_nothing_called
+      assert_nil on.callback
     end
   end
 end

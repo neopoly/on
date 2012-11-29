@@ -23,10 +23,14 @@ require 'set'
 #    end
 #  end
 class On
+  # Returns the Callback called or +nil+ if none called.
+  attr_reader :callback
+
   def initialize(*callbacks, &block)
     raise ArgumentError, "please provide at least one callback" if callbacks.empty?
     raise ArgumentError, "please provide a block" unless block
     @callbacks  = Set.new(callbacks)
+    @callback   = nil
     @block      = block
   end
 
@@ -41,11 +45,13 @@ class On
   def on(name, &block)
     validate_callback!(name)
     if @callback && @callback.name == name
-      block.call(*@callback.args)
+      block.call(*callback.args)
     end
   end
 
-  Callback = Struct.new(:name, :args)
+  # Represents a callback called with its +name+ and +args+.
+  class Callback < Struct.new(:name, :args)
+  end
 
   class InvalidCallback < StandardError # :nodoc:
     def initialize(name)
