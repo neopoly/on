@@ -24,6 +24,13 @@ class OnTest < Testem
       called.clear
     end
 
+    test "returns a list of supported callback names" do
+      on = On.new(:success, :failure) {}
+      assert_equal 2, on.callbacks.size
+      assert on.callbacks.include?(:success)
+      assert on.callbacks.include?(:failure)
+    end
+
     test "calls callback w/o args" do
       on = On.new(:success) do |callback|
         called! :block
