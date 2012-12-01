@@ -49,6 +49,11 @@ class On
     end
   end
 
+  # Returns a list of supported callback names provided in the initializer.
+  def callbacks
+    @callbacks.to_a
+  end
+
   # Represents a callback called with its +name+ and +args+.
   class Callback < Struct.new(:name, :args)
   end
