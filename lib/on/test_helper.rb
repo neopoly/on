@@ -7,25 +7,29 @@ class On
   #   require 'on'
   #   require 'on/test_helper'
   #
-  #   class SomeTest < MiniTest::Unit
+  #   class SomeTest < MiniTest::Spec
   #     include On::TestHelper
   #
   #     let(:recorder) { On::TestHelper::Recorder.new }
   #
-  #     test "record everything" do
+  #     it "records everything" do
   #       on = On.new(:success, :failure, &recorder)
   #       on.call :success, :some, :args
-  #
   #       assert_callback recorder, :success, :some, :args
   #     end
   #
-  #     test "record everything manually" do
+  #     it "calls nothing" do
+  #       on = On.new(:success, :failure, &recorder)
+  #       # nothing called
+  #       refute_callbacks recorder
+  #     end
+  #
+  #     it "records everything manually" do
   #       on = On.new(:success, :failure) do |result|
   #         recorder.record_block
   #         recorder.record_callback(result, :success, :failure)
   #       end
   #       on.call :success, :some, :args
-  #
   #       assert_callback recorder, :success, :some, :args
   #     end
   #   end

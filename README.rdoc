@@ -53,6 +53,40 @@ Syntatic sugar for creating an +on+ callback from Proc.
     end
   end
 
+== Testing with On::TestHelper
+
+  require 'minitest/autorun'
+  require 'on'
+  require 'on/test_helper'
+
+  class SomeTest < MiniTest::Spec
+    include On::TestHelper
+
+    let(:recorder) { On::TestHelper::Recorder.new }
+
+    it "records everything" do
+      on = On.new(:success, :failure, &recorder)
+      on.call :success, :some, :args
+      assert_callback recorder, :success, :some, :args
+    end
+
+    it "calls nothing" do
+      on = On.new(:success, :failure, &recorder)
+      # nothing called
+      refute_callbacks recorder
+    end
+
+    it "records everything manually" do
+      on = On.new(:success, :failure) do |result|
+        recorder.record_block
+        recorder.record_callback(result, :success, :failure)
+      end
+      on.call :success, :some, :args
+      assert_callback recorder, :success, :some, :args
+    end
+  end
+
+
 == Installation
 
 Add this line to your application's Gemfile:
