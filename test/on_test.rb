@@ -20,10 +20,6 @@ class OnTest < Testem
   end
 
   context "with an instance" do
-    before do
-      called.clear
-    end
-
     test "returns a list of supported callback names" do
       on = On.new(:success, :failure) {}
       assert_equal 2, on.callbacks.size
@@ -32,27 +28,20 @@ class OnTest < Testem
     end
 
     test "calls callback w/o args" do
-      on = On.new(:success) do |callback|
-        called! :block
-        callback.on :success do |*args|
-          called! :success, *args
-        end
-      end
+      on = On.new(:success, &recorder)
       on.call :success
 
-      assert_called [ :block ], [ :success ]
+      assert recorder.block_called?
+      assert_callback recorder, :success
     end
 
     test "calls callback with args" do
-      on = On.new(:success) do |callback|
-        called! :block
-        callback.on :success do |*args|
-          called! :success, *args
-        end
-      end
+      on = On.new(:success, &recorder)
       on.call :success, :foo, :bar
 
-      assert_called [ :block ], [ :success, :foo, :bar ]
+      assert recorder.block_called?
+      assert_callback recorder, :success, :foo, :bar
+
       assert on.callback
       assert_equal :success, on.callback.name
     end
@@ -68,26 +57,20 @@ class OnTest < Testem
 
     test "handles invalid callback" do
       on = On.new(:correct) do |callback|
-        called! :block
         callback.on :wrong
       end
       e = assert_raises On::InvalidCallback do
         on.call :correct
       end
-
       assert_equal "Invalid callback :wrong", e.message
-      assert_called [ :block ]
     end
 
     test "does not explode when nothing called" do
-      on = On.new(:something) do
-        called! :block
-      end
-      on.on :something do
-        called! :something
-      end
+      on = On.new(:something, &recorder)
 
-      assert_nothing_called
+      refute_callbacks recorder
+      refute recorder.block_called?
+
       assert_nil on.callback
     end
   end
