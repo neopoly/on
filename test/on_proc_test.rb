@@ -12,22 +12,11 @@ class OnProcTest < Testem
     end
   end
 
-  def verify(number)
-    oddeven(number) do |callback|
-      called! :block, number
-      callback.on :odd do
-        called! :odd
-      end
-      callback.on :even do
-        called! :even
-      end
-    end
-  end
-
   test "call proc" do
-    verify(1)
-    verify(2)
+    oddeven(1, &recorder)
+    assert_callback recorder, :odd
 
-    assert_called [ :block, 1 ], [ :odd ], [ :block, 2 ], [ :even ]
+    oddeven(2, &recorder)
+    assert_callback recorder, :even
   end
 end

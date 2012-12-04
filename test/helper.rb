@@ -1,22 +1,10 @@
 require 'minitest/autorun'
 require 'testem'
 
+require 'on/test_helper'
+
 class Testem
-  let(:called) { [] }
+  include On::TestHelper
 
-  setup do
-    called.clear
-  end
-
-  def called!(*args)
-    called << args
-  end
-
-  def assert_called(*args)
-    assert_equal called, args
-  end
-
-  def assert_nothing_called
-    assert_called
-  end
+  let(:recorder) { On::TestHelper::Recorder.new }
 end

@@ -14,53 +14,30 @@ class IntegrationTest < Testem
   end
 
   test "it calls success" do
-    tweet "Sir, hello world" do |callback|
-      called! :method
-      callback.on :success do |message|
-        called! :success, message
-      end
-      callback.on :failure do |message|
-        called! :failure, message
-      end
-    end
-
-    assert_called [ :method ], [ :success, "Sir, hello world" ]
+    tweet "Sir, hello world", &recorder
+    assert_callback recorder, :success, "Sir, hello world"
   end
 
   test "it calls failure" do
-    tweet nil do |callback|
-      called! :method
-      callback.on :success do |message|
-        called! :success, message
-      end
-      callback.on :failure do |message|
-        called! :failure, message
-      end
-    end
-
-    assert_called [ :method ], [ :failure, "blank" ]
+    tweet nil, &recorder
+    assert_callback recorder, :failure, "blank"
   end
 
   test "no callback called" do
-    tweet "you're such a fool" do |callback|
-      called! :method
-    end
-
-    assert_called
+    tweet "you're such a fool", &recorder
+    refute_callbacks recorder
+    refute recorder.block_called?
   end
 
   test "invalid callback name" do
     e = assert_raises On::InvalidCallback do
       tweet "Sir, hi" do |callback|
-        called! :method
-
-        callback.on :invalid do
-          called! :invalid
-        end
+        recorder.record_block
+        callback.on(:invalid) {}
       end
     end
     assert_equal "Invalid callback :invalid", e.message
-
-    assert_called [:method]
+    assert recorder.block_called?
+    refute_callbacks recorder
   end
 end
