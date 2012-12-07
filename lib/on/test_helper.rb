@@ -32,6 +32,18 @@ class On
   #       on.call :success, :some, :args
   #       assert_callback recorder, :success, :some, :args
   #     end
+  #
+  #     it "checks record args in a block" do
+  #       on = On.new(:success, :failure) do |result|
+  #         recorder.record_block
+  #         recorder.record_callback(result, :success, :failure)
+  #       end
+  #       on.call :success, :some, :args
+  #       assert_callback recorder, :success do |some, args|
+  #         assert_equal :some, some
+  #         assert_equal :args, args
+  #       end
+  #     end
   #   end
   module TestHelper
     # Asserts that a certain callbacks has been recorded by +recorder+.
@@ -41,10 +53,16 @@ class On
     #   assert_callback recorder, :success, "some", "args"
     #
     def assert_callback(recorder, name, *args)
+      raise ArgumentError, "Provide args or block but not both" if block_given? && !args.empty?
+
       callback = recorder.last_record
       assert callback, "No callbacks found"
       assert_equal name, callback.name, "Callback was #{callback}"
-      assert_equal args, callback.args, "Callback was #{callback}"
+      if block_given?
+        yield *callback.args
+      else
+        assert_equal args, callback.args, "Callback was #{callback}"
+      end
     end
 
     # Asserts that *no* callbacks has been recorder by +recorder+.
@@ -101,9 +119,13 @@ class On
       def record_callback(on, *names)
         names.each do |name|
           on.on name do |*args|
-            @callbacks << Callback.new(name, args)
+            callback_recorded(name, args)
           end
         end
+      end
+
+      def callback_recorded(name, args)
+        @callbacks << Callback.new(name, args)
       end
 
       # Short-hand for &+recorder.record_all+.
