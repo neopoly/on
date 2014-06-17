@@ -1,6 +1,6 @@
 = On
 
-{<img src="https://secure.travis-ci.org/neopoly/on.png?branch=master" alt="Build Status" />}[http://travis-ci.org/neopoly/on] {<img src="https://badge.fury.io/rb/on.png" alt="Gem Version" />}[http://badge.fury.io/rb/on] {<img src="https://codeclimate.com/github/neopoly/on.png" />}[https://codeclimate.com/github/neopoly/on] {<img src="http://inch-pages.github.io/github/neopoly/on.png" />}[http://inch-pages.github.io/github/neopoly/on]
+{<img src="https://secure.travis-ci.org/neopoly/on.png?branch=master" alt="Build Status" />}[http://travis-ci.org/neopoly/on] {<img src="https://badge.fury.io/rb/on.png" alt="Gem Version" />}[http://badge.fury.io/rb/on] {<img src="https://codeclimate.com/github/neopoly/on.png" />}[https://codeclimate.com/github/neopoly/on] {<img src="http://inch-ci.org/github/neopoly/on.png" />}[http://inch-ci.org/github/neopoly/on]
 
 
 Dynamic callbacks for Ruby blocks.
