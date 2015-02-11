@@ -1,19 +1,23 @@
+[github]: https://github.com/neopoly/on
+[doc]: http://rubydoc.info/github/neopoly/on/master/file/README.md
+[gem]: https://rubygems.org/gems/on
+[travis]: https://travis-ci.org/neopoly/on 
+[codeclimate]: https://codeclimate.com/github/neopoly/on
+[inchpages]: https://inch-ci.org/github/neopoly/on
+
 # On
 
-[<img src="https://secure.travis-ci.org/neopoly/on.png?branch=master"
-alt="Build Status" />](http://travis-ci.org/neopoly/on) [<img
-src="https://badge.fury.io/rb/on.png" alt="Gem Version"
-/>](http://badge.fury.io/rb/on) [<img
-src="https://codeclimate.com/github/neopoly/on.png"
-/>](https://codeclimate.com/github/neopoly/on) [<img
-src="http://inch-ci.org/github/neopoly/on.png"
-/>](http://inch-ci.org/github/neopoly/on)
+[![Travis](https://img.shields.io/travis/neopoly/on.svg?branch=master)][travis]
+[![Gem Version](https://img.shields.io/gem/v/on.svg)][gem]
+[![Code Climate](https://img.shields.io/codeclimate/github/neopoly/on.svg)][codeclimate]
+[![Test Coverage](https://codeclimate.com/github/neopoly/on/badges/coverage.svg)][codeclimate]
+[![Inline docs](https://inch-ci.org/github/neopoly/on.svg?branch=master&style=flat)][inchpages]
 
 Dynamic callbacks for Ruby blocks.
 
-[Gem](https://rubygems.org/gems/on) | [Source](https://github.com/neopoly/on)
-|
-[Documentation](http://rubydoc.info/github/neopoly/on/master/file/README.rdoc)
+[Gem][gem] |
+[Source][github] |
+[Documentation][doc]
 
 Inspired by
 http://www.mattsears.com/articles/2011/11/27/ruby-blocks-as-dynamic-callbacks
