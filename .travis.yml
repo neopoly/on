@@ -1,7 +1,7 @@
 language: ruby
 sudo: false
 cache: bundler
-script: rake test:all
+script: bundle exec rake test:all
 rvm:
   - 1.9.3
   - 2.0
