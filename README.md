@@ -68,7 +68,7 @@ end
 
 ## Testing with On::TestHelper
 
-```
+```ruby
 require 'minitest/autorun'
 require 'on'
 require 'on/test_helper'
