@@ -13,6 +13,7 @@ rvm:
   - rbx-2
 env:
   global:
+    - CODECLIMATE_REPO_TOKEN=e8d41c4e69b4127159b46a6b18a8a2b470ff001674e59c7762cce788d4021fbb
     - JRUBY_OPTS='--dev -J-Xmx1024M'
 matrix:
   allow_failures:
