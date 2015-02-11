@@ -56,12 +56,13 @@ class On
       raise ArgumentError, "Provide args or block but not both" if block_given? && !args.empty?
 
       callback = recorder.last_record
+      assertion_message = proc { "Callback was #{callback}" }
       assert callback, "No callbacks found"
-      assert_equal name, callback.name, "Callback was #{callback}"
+      assert_equal name, callback.name, assertion_message
       if block_given?
         yield *callback.args
       else
-        assert_equal args, callback.args, "Callback was #{callback}"
+        assert_equal args, callback.args, assertion_message
       end
     end
 
@@ -124,8 +125,9 @@ class On
         end
       end
 
-      def callback_recorded(name, args)
-        @callbacks << Callback.new(name, args)
+      def callback_recorded(name, args=[])
+        callback = Callback === name ? name : Callback.new(name, args)
+        @callbacks << callback
       end
 
       # Short-hand for &+recorder.record_all+.

@@ -9,6 +9,11 @@ class OnTestHelperTest < Testem
       assert_callback recorder, :foo
     end
 
+    test "evaluates assertion messages lazily" do
+      record_boom :foo
+      assert_callback recorder, :foo
+    end
+
     test "match with args" do
       record :foo, :bar, :baz
       assert_callback recorder, :foo, :bar, :baz
@@ -98,6 +103,17 @@ class OnTestHelperTest < Testem
   end
 
   private
+
+  class BoomCallback < On::TestHelper::Recorder::Callback
+    def to_s
+      raise "I should NOT be called"
+    end
+  end
+
+  def record_boom(name, *args)
+    callback = BoomCallback.new(name, args)
+    recorder.callback_recorded(callback)
+  end
 
   def record(name, *args)
     recorder.callback_recorded(name, args)
