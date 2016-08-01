@@ -4,12 +4,17 @@ if ENV['CODECLIMATE_REPO_TOKEN']
 end
 
 require 'minitest/autorun'
-require 'testem'
 
+require 'on'
 require 'on/test_helper'
 
-class Testem
+class Spec < Minitest::Spec
   include On::TestHelper
+
+  class << self
+    alias test it
+    alias context describe
+  end
 
   let(:recorder) { On::TestHelper::Recorder.new }
 end

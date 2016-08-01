@@ -2,7 +2,7 @@ require 'helper'
 
 require 'on'
 
-class IntegrationTest < Testem
+class IntegrationTest < Spec
   def tweet(message, &block)
     callback = On.new(:success, :failure, &block)
     case message

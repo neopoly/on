@@ -2,7 +2,7 @@ require 'helper'
 
 require 'on'
 
-class OnTest < Testem
+class OnTest < Spec
   context "initialize" do
     test "at least one callback" do
       e = assert_raises ArgumentError do

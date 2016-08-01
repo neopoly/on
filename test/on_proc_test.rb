@@ -2,7 +2,7 @@ require 'helper'
 
 require 'on/proc'
 
-class OnProcTest < Testem
+class OnProcTest < Spec
   def oddeven(number, &block)
     callback = block.on(:odd, :even)
     if number % 2 == 0

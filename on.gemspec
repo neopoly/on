@@ -21,5 +21,4 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rdoc'
 
   gem.add_development_dependency 'minitest'
-  gem.add_development_dependency 'testem'
 end

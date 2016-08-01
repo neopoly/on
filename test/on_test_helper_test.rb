@@ -2,7 +2,7 @@ require 'helper'
 
 require 'on'
 
-class OnTestHelperTest < Testem
+class OnTestHelperTest < Spec
   context "assert_callback" do
     test "match w/o args" do
       record :foo
