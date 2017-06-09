@@ -3,11 +3,11 @@ sudo: false
 cache: bundler
 script: bundle exec rake test:all
 rvm:
-  - 2.2
-  - 2.3.4
   - 2.4.1
-  - ruby-head
+  - 2.3.4
+  - 2.2
   - jruby-9.1.9.0
+  - ruby-head
   - jruby-head
 env:
   global:
