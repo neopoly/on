@@ -6,8 +6,8 @@ require 'on/version'
 Gem::Specification.new do |gem|
   gem.name          = "on"
   gem.version       = On::VERSION
-  gem.authors       = ["Peter Suschlik"]
-  gem.email         = ["ps@neopoly.de"]
+  gem.authors       = ["Peter Leitzen"]
+  gem.email         = ["pl@neopoly.de"]
   gem.description   = %q{Dynamic callbacks with Ruby blocks.}
   gem.summary       = %q{Inspired by http://www.mattsears.com/articles/2011/11/27/ruby-blocks-as-dynamic-callbacks}
   gem.homepage      = "https://github.com/neopoly/on"
