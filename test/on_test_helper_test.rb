@@ -52,7 +52,7 @@ class OnTestHelperTest < Spec
       e = assert_raises MiniTest::Assertion do
         assert_callback recorder, :bar
       end
-      assert_match /Expected: :bar\n\s*Actual: :foo/, e.message
+      assert_match(/Expected: :bar\n\s*Actual: :foo/, e.message)
     end
 
     test "mismatch args" do
@@ -60,7 +60,7 @@ class OnTestHelperTest < Spec
       e = assert_raises MiniTest::Assertion do
         assert_callback recorder, :foo, :baz
       end
-      assert_match /Expected: \[:baz\]\n\s*Actual: \[:bar\]/, e.message
+      assert_match(/Expected: \[:baz\]\n\s*Actual: \[:bar\]/, e.message)
     end
 
     test "mismatch block" do
@@ -72,7 +72,7 @@ class OnTestHelperTest < Spec
           assert_equal :baz, bar
         end
       end
-      assert_match /Expected: :baz\n\s*Actual: :bar/, e.message
+      assert_match(/Expected: :baz\n\s*Actual: :bar/, e.message)
       assert called
     end
 
@@ -98,7 +98,7 @@ class OnTestHelperTest < Spec
       e = assert_raises MiniTest::Assertion do
         refute_callbacks recorder
       end
-      assert_match /Something has been recorded/, e.message
+      assert_match(/Something has been recorded/, e.message)
     end
   end
 
