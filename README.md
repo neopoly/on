@@ -110,7 +110,7 @@ end
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'on', '~> 0.3.3'
+gem 'on', '~> 1.0.0'
 ```
 
 And then execute:
