@@ -110,7 +110,7 @@ end
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'on'
+gem 'on', '~> 0.3.3'
 ```
 
 And then execute:
@@ -133,3 +133,14 @@ $ gem install on
 4.  Push to the branch (`git push origin my-new-feature`)
 5.  Create new Pull Request
 
+## Release
+
+Follow these steps to release this gem:
+
+    # Bump version in
+    edit lib/on/version.rb
+    edit README.md
+
+    git commit -m "Release X.Y.Z"
+
+    rake release
