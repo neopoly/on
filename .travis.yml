@@ -3,14 +3,12 @@ sudo: false
 cache: bundler
 script: bundle exec rake test:all
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
   - 2.2
+  - 2.3.4
+  - 2.4.1
   - ruby-head
-  - jruby
+  - jruby-9.1.9.0
   - jruby-head
-  - rbx-2
 env:
   global:
     - CODECLIMATE_REPO_TOKEN=e8d41c4e69b4127159b46a6b18a8a2b470ff001674e59c7762cce788d4021fbb
